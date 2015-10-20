@@ -11,7 +11,7 @@ class Home(TemplateView):
 
 class QuestionCreateView(CreateView):
   model = Question
-  template_name = 'question/question_form'
+  template_name = 'question/question_form.html'
   fields = ['title', 'description']
   success_url = reverse_lazy('question_list')
 
@@ -126,3 +126,9 @@ class VoteFormView(FormView):
             else:
                prev_votes[0].delete()
         return redirect('question_list')
+
+class UserDetailView(DetailView):
+    model = User
+    slug_field = 'username'
+    template_name = 'user/user_detail.html'
+    context_object_name = 'user_in_view'
